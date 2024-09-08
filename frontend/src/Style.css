@@ -1,0 +1,51 @@
+.body{
+    background-image: url('./assets/illustration-signup.jpg');
+    max-width:100%;
+    height: 750px;;
+    background-position: center;
+    background-size: cover;
+}
+.backroundregister{
+    background-image: url('./assets/illustration-signup.jpg');
+    background-size: cover;
+}
+/*position de texte*/
+.w3-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
+/*font-size*/
+.w3-jumbo{font-size:64px!important}
+/*animation*/
+.w3-animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+
+.w3-large{font-size:18px!important}
+/*position de 35 days left en centre*/
+.w3-center{text-align:center!important}
+/*position de texte a la fin left*/
+.w3-display-bottomleft{position:absolute;left:0;bottom:0}
+.w3-padding-large{padding:12px 24px!important}/*padding de texte*/
+
+.position{padding-top:99px!important;}
+
+.coloradmin{
+    background-color: orange;
+}
+.colornbruser{
+    background-color: greenyellow;
+}
+.colorensembleutilisateur{
+    background-color: pink;
+}
+.nbranomalie{
+    background-color: red;
+}
+.nbrnonverifier{
+    background-color: yellow;
+}
+.nbrverifier{
+    background-color: green;
+}
+.nbrtotal{
+    background-color: rgb(255, 0, 191);
+}
+.bodybackground{
+    background-color: rgb(235, 230, 230);
+}

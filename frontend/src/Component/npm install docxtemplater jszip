@@ -1,0 +1,58 @@
+// src/components/DiplomeDisplay.js une fois les npm sont installer fait npm start
+import React from 'react';
+import diplomeImage from '../assets/diplome.jpg'; // Assurez-vous que l'image est dans le dossier assets
+import { saveAs } from 'file-saver';
+import PizZip from 'pizzip';
+import Docxtemplater from 'docxtemplater';
+
+const DiplomeDisplay = ({ nom, prenom, mention }) => {
+  const generateDocx = () => {
+    const templatePath = process.env.PUBLIC_URL + '/assets/template.docx';
+
+    fetch(templatePath)
+      .then((response) => response.arrayBuffer())
+      .then((data) => {
+        const zip = new PizZip(data);
+        const doc = new Docxtemplater(zip, {
+          paragraphLoop: true,
+          linebreaks: true,
+        });
+
+        doc.setData({
+          nom,
+          prenom,
+          mention,
+        });
+
+        try {
+          doc.render();
+        } catch (error) {
+          console.error(error);
+        }
+
+        const blob = doc.getZip().generate({
+          type: 'blob',
+          mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+
+        saveAs(blob, 'diplome.docx');
+      });
+  };
+
+  return (
+    <div style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: 'auto' }}>
+      <img src={diplomeImage} alt="Diplôme" style={{ width: '100%' }} />
+      <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '24px', fontWeight: 'bold' }}>
+        {nom} {prenom}
+      </div>
+      <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', fontSize: '20px' }}>
+        {mention}
+      </div> 
+      <button onClick={generateDocx} style={{ marginTop: '20px', display: 'block' }}>
+        Télécharger le document Word
+      </button>
+    </div>
+  );
+};
+
+export default DiplomeDisplay;
